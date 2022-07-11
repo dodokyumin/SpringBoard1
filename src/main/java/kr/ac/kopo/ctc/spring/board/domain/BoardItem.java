@@ -31,6 +31,15 @@ public class BoardItem {
 	@Column
 	private int view;
 	
+//	public BoardItem(int id, String author, Date date, int no, String title, int view) {
+//		setId(id);
+//		setAuthor(author);
+//		setCreated(date);
+//		setNo(no);
+//		setTitle(title);
+//		setView(view);
+//	}
+	
 	public int getId() {
 		return id;
 	}
