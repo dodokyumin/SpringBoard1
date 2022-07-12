@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.ac.kopo.ctc.spring.board.repo.mapper.BoardItemMapper">
+	
+	<!-- C -->
+	<insert id ="insert" parameterType="kr.ac.kopo.ctc.spring.board.domain.BoardItem">
+		insert into board_item
+		<!-- 테이블에 있는 컬럼 이름들 -->
+		(id, author, created, no, title, view)
+		values(#{id}, #{author}, #{created}, #{no} ,#{title}, #{view})
+	</insert>
+	
+	
+	
+	
+	<!-- R -->
+	<select id="selectOne" resultType="kr.ac.kopo.ctc.spring.board.domain.BoardItem" parameterType="map">
+		select 
+			*
+		from
+			board_item
+		where
+			id = #{id}
+	</select>
+	
+	<select id ="findAll" resultType="kr.ac.kopo.ctc.spring.board.domain.BoardItem">
+		select
+			*
+		from
+			board_item
+	</select>
+	
+	<select id ="findAllByCondition" resultType="kr.ac.kopo.ctc.spring.board.domain.BoardItem">
+		select
+			*
+		from
+			board_item
+		where
+			<include refid="whereCondition"/>
+	</select>
+	
+	<select id ="findAllByPage" resultType="kr.ac.kopo.ctc.spring.board.domain.BoardItem">
+		select
+			*
+		from
+			board_item
+		where
+			1 = 1
+	</select>
+	
+	<select id ="findAllByPageCondition" resultType="kr.ac.kopo.ctc.spring.board.domain.BoardItem">
+		select
+			*
+		from
+			board_item
+		where
+			<include refid="whereCondition"/>
+	</select>
+	
+	<sql id="whereCondition">
+		<if test="id != null">
+			title LIKE concat('%',#{title},'%')
+		</if>
+	</sql>
+	
+	
+		<!-- U -->
+	<update id ="update" parameterType="kr.ac.kopo.ctc.spring.board.domain.BoardItem">
+		update board_item
+		set author = #{author}, created = #{created}, no = #{no}, title = #{title}, view = #{view}
+		where
+			id = #{id}
+	</update>
+	
+		<!-- D -->
+	<delete id ="delete" parameterType="kr.ac.kopo.ctc.spring.board.domain.BoardItem">
+		delete from board_item
+		where
+			id = #{id}
+	</delete>
+	
+</mapper>
