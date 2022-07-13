@@ -3,7 +3,6 @@ package kr.ac.kopo.ctc.spring.board;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Date;
-import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
@@ -13,6 +12,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
 import kr.ac.kopo.ctc.spring.board.domain.BoardItem;
+import kr.ac.kopo.ctc.spring.board.domain.BoardGroup;
+import kr.ac.kopo.ctc.spring.board.repository.BoardGroupRepository;
 import kr.ac.kopo.ctc.spring.board.repository.BoardItemRepository;
 
 //테스트가 Spring으로 돌아갈 수 있게 해주는 어노테이션
@@ -22,22 +23,29 @@ class SpringBoard1ApplicationTests {
 	//= BoardItemRepository boardItemRepository = new BoardItemRepository();
 	@Autowired
 	private BoardItemRepository boardItemRepository;
+	
+	@Autowired
+	private BoardGroupRepository boardGroupRepository;
 //
-//	//C
+	//C (group)
 //	@Test
-//	public void TestSave(){
+//	public void TestSaveGroup(){
+//		BoardGroup boardGroup = new BoardGroup();
+//		boardGroup.setName("SecondGroup");
+//		boardGroupRepository.save(boardGroup);
 //		
-//		BoardItem boardItem = new BoardItem();
-//		Date date = new Date();
-//		boardItem.setCreated(date);
-//		boardItem.setView(0);
-//		boardItem.setAuthor("홍길동3");
-//		boardItem.setNo(8);
-//		boardItem.setTitle("타이틀3입니다.");
-//		boardItemRepository.save(boardItem);
-//		
-//		assertEquals(boardItemRepository.findAll(), 4);
 //	}
+	//C (item)
+	@Test
+	public void TestSaveItem(){
+		Optional<BoardGroup> boardGroupOpt = boardGroupRepository.findById(4);
+		BoardGroup boardGroup = boardGroupOpt.get();
+		
+		BoardItem boardItem = new BoardItem("홍길동3", new Date(), 3, "타이틀3입니다.", 1, boardGroup);
+
+		boardItemRepository.save(boardItem);
+		
+	}
 //	
 //	//U
 //	@Test
@@ -92,13 +100,13 @@ class SpringBoard1ApplicationTests {
 //	}
 
 	//page
-	@Test
-	public void TestfindAllPage(){
-		PageRequest pageable = PageRequest.of(0, 10);
-		Page<BoardItem> page = boardItemRepository.findAll(pageable);		
-		
-		System.out.println(page.getContent());
-	}
+//	@Test
+//	public void TestfindAllPage(){
+//		PageRequest pageable = PageRequest.of(0, 10);
+//		Page<BoardItem> page = boardItemRepository.findAll(pageable);		
+//		
+//		System.out.println(page.getContent());
+//	}
 //	
 //	//search + page
 //	@Test

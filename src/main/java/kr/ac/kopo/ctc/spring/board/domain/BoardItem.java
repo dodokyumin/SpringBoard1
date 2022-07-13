@@ -5,14 +5,18 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class BoardItem {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column
 	private int id;
 	
@@ -31,15 +35,29 @@ public class BoardItem {
 	@Column
 	private int view;
 	
-//	public BoardItem(int id, String author, Date date, int no, String title, int view) {
-//		setId(id);
-//		setAuthor(author);
-//		setCreated(date);
-//		setNo(no);
-//		setTitle(title);
-//		setView(view);
-//	}
+	@ManyToOne(optional=false, fetch=FetchType.EAGER)
+	@JoinColumn(name="board_group_id")
+	private BoardGroup boardGroup;
 	
+	public BoardItem() {
+	}
+	
+	public BoardItem(String author, Date date, int no, String title, int view, BoardGroup boardGroup ) {
+		this.author = author;
+		this.created = date;
+		this.no = no;
+		this.title = title;
+		this.view = view;
+		this.boardGroup = boardGroup;
+		
+	}
+	
+	public BoardGroup getBoardgroup() {
+		return boardGroup;
+	}
+	public void setBoardgroup(BoardGroup boardGroup) {
+		this.boardGroup = boardGroup;
+	}
 	public int getId() {
 		return id;
 	}
