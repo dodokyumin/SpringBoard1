@@ -16,7 +16,7 @@ import kr.ac.kopo.ctc.spring.board.domain.BoardItem;
 import kr.ac.kopo.ctc.spring.board.domain.BoardGroup;
 import kr.ac.kopo.ctc.spring.board.repository.BoardGroupRepository;
 import kr.ac.kopo.ctc.spring.board.repository.BoardItemRepository;
-import kr.ac.kopo.ctc.spring.board.service.BoardItemService;
+import kr.ac.kopo.ctc.spring.board.service.BoardItemServiceImpl;
 
 //테스트가 Spring으로 돌아갈 수 있게 해주는 어노테이션
 @SpringBootTest
@@ -137,7 +137,7 @@ class SpringBoard1ApplicationTests {
 //	트랜잭션 테스트
 	
 	@Autowired
-	private BoardItemService boardItemService;
+	private BoardItemServiceImpl boardItemService;
 
 	@Ignore
 	@Test

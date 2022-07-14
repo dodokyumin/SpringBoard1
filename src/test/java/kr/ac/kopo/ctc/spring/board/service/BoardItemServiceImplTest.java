@@ -6,15 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class BoardItemServiceTest {
+class BoardItemServiceImplTest {
 
 	@Autowired
-	private BoardItemService boardItemService;
+	private BoardItemServiceImpl boardItemService;
 
-//	@Test
-//	void test() {
-//		boardItemService.test();
-//	}
+	@Test
+	void test() {
+		boardItemService.test();
+	}
 //	
 //	@Test
 //	void testAopBefore() {
