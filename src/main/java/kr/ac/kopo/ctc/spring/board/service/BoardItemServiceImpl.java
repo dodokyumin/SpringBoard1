@@ -7,4 +7,14 @@ public interface BoardItemServiceImpl {
 	String testAopAfterReturning();
 	void testAopAfterThrowing();
 	void testAopAround();
+	
+	
+	//aop
+		String testNoAop();
+		String testAop();
+		
+		//transactional
+		String testNoTransactional();
+		String testTransactional();
+	
 }

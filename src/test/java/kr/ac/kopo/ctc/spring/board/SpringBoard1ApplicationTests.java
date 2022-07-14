@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.Date;
 import java.util.Optional;
 
+import org.junit.Ignore;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,6 +16,7 @@ import kr.ac.kopo.ctc.spring.board.domain.BoardItem;
 import kr.ac.kopo.ctc.spring.board.domain.BoardGroup;
 import kr.ac.kopo.ctc.spring.board.repository.BoardGroupRepository;
 import kr.ac.kopo.ctc.spring.board.repository.BoardItemRepository;
+import kr.ac.kopo.ctc.spring.board.service.BoardItemService;
 
 //테스트가 Spring으로 돌아갈 수 있게 해주는 어노테이션
 @SpringBootTest
@@ -28,12 +30,12 @@ class SpringBoard1ApplicationTests {
 	private BoardGroupRepository boardGroupRepository;
 
 	//부모 자식 cascade 삭제 테스트
-	@Test
-	public void TestCascadeDelete(){
-		Optional<BoardGroup> boardGroupOpt = boardGroupRepository.findById(4);
-		BoardGroup boardGroup = boardGroupOpt.get();
-		boardGroupRepository.delete(boardGroup);
-	}
+//	@Test
+//	public void TestCascadeDelete(){
+//		Optional<BoardGroup> boardGroupOpt = boardGroupRepository.findById(4);
+//		BoardGroup boardGroup = boardGroupOpt.get();
+//		boardGroupRepository.delete(boardGroup);
+//	}
 	
 	//부모 자식 fetchType 변경 테스트
 //	@Test
@@ -132,5 +134,19 @@ class SpringBoard1ApplicationTests {
 //		System.out.println(page.getContent());
 //	}
 
+//	트랜잭션 테스트
+	
+	@Autowired
+	private BoardItemService boardItemService;
 
+	@Ignore
+	@Test
+	void testNoTransactional() {
+		boardItemService.testNoTransactional();
+	}
+	
+	@Test
+	void testTransactional() {
+		boardItemService.testTransactional();
+	}
 }

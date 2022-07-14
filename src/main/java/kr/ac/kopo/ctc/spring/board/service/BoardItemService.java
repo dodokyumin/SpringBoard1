@@ -1,6 +1,11 @@
 package kr.ac.kopo.ctc.spring.board.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import kr.ac.kopo.ctc.spring.board.domain.BoardItem;
+import kr.ac.kopo.ctc.spring.board.repository.BoardItemRepository;
 
 @Service
 public class BoardItemService implements BoardItemServiceImpl {
@@ -36,6 +41,40 @@ public class BoardItemService implements BoardItemServiceImpl {
 	public void testAopAround() {
 		System.out.println("BoardItemServiceImple.testAopAround() 메소드 호출");
 		
+	}
+	
+	@Autowired
+	private BoardItemRepository boardItemRepository;
+	
+	@Override
+	public String testNoAop() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String testAop() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String testNoTransactional() {
+		BoardItem boardItem = boardItemRepository.findById(1).get();
+		boardItem.setTitle("transaction 실습");
+		boardItemRepository.save(boardItem);
+		
+		throw new RuntimeException("Spring Boot No Transaction Test");
+	}
+
+	@Override
+	@Transactional
+	public String testTransactional() {
+		BoardItem boardItem = boardItemRepository.findById(1).get();
+		boardItem.setTitle("transaction 실습");
+		boardItemRepository.save(boardItem);
+		
+		throw new RuntimeException("Spring Boot Transaction Test");
 	}
 
 }
