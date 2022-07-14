@@ -26,7 +26,22 @@ class SpringBoard1ApplicationTests {
 	
 	@Autowired
 	private BoardGroupRepository boardGroupRepository;
-//
+
+	//부모 자식 cascade 삭제 테스트
+	@Test
+	public void TestCascadeDelete(){
+		Optional<BoardGroup> boardGroupOpt = boardGroupRepository.findById(4);
+		BoardGroup boardGroup = boardGroupOpt.get();
+		boardGroupRepository.delete(boardGroup);
+	}
+	
+	//부모 자식 fetchType 변경 테스트
+//	@Test
+//	public void TestFetchType(){
+//		Optional<BoardGroup> boardGroupOpt = boardGroupRepository.findById(1);
+//		System.out.println(boardGroupOpt);
+//	}
+	
 	//C (group)
 //	@Test
 //	public void TestSaveGroup(){
@@ -35,17 +50,17 @@ class SpringBoard1ApplicationTests {
 //		boardGroupRepository.save(boardGroup);
 //		
 //	}
-	//C (item)
-	@Test
-	public void TestSaveItem(){
-		Optional<BoardGroup> boardGroupOpt = boardGroupRepository.findById(4);
-		BoardGroup boardGroup = boardGroupOpt.get();
-		
-		BoardItem boardItem = new BoardItem("홍길동3", new Date(), 3, "타이틀3입니다.", 1, boardGroup);
-
-		boardItemRepository.save(boardItem);
-		
-	}
+//	//C (item)
+//	@Test
+//	public void TestSaveItem(){
+//		Optional<BoardGroup> boardGroupOpt = boardGroupRepository.findById(4);
+//		BoardGroup boardGroup = boardGroupOpt.get();
+//		
+//		BoardItem boardItem = new BoardItem("홍길동3", new Date(), 3, "타이틀3입니다.", 1, boardGroup);
+//
+//		boardItemRepository.save(boardItem);
+//		
+//	}
 //	
 //	//U
 //	@Test

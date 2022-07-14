@@ -35,12 +35,9 @@ public class BoardItem {
 	@Column
 	private int view;
 	
-	@ManyToOne(optional=false, fetch=FetchType.EAGER)
+	@ManyToOne(optional=false)
 	@JoinColumn(name="board_group_id")
 	private BoardGroup boardGroup;
-	
-	public BoardItem() {
-	}
 	
 	public BoardItem(String author, Date date, int no, String title, int view, BoardGroup boardGroup ) {
 		this.author = author;
@@ -52,6 +49,10 @@ public class BoardItem {
 		
 	}
 	
+	public BoardItem() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public BoardGroup getBoardgroup() {
 		return boardGroup;
 	}
