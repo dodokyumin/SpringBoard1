@@ -5,12 +5,13 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class BoardItem {
@@ -35,7 +36,9 @@ public class BoardItem {
 	@Column
 	private int view;
 	
+	//@JsonManagedReference 참조 통과 어노테이션
 	@ManyToOne(optional=false)
+	@JsonBackReference//순환참조를 막기위한 어노테이션
 	@JoinColumn(name="board_group_id")
 	private BoardGroup boardGroup;
 	

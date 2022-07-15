@@ -29,7 +29,11 @@ public interface BoardItemRepository extends JpaRepository<BoardItem, Integer>, 
 	//search
 	List<BoardItem> findAllByTitleContaining(String search);
 	
+	List<BoardItem> findAllByBoardGroupId(Integer gid);
+	
 	//page + search
 	Page<BoardItem> findAllByTitleContaining(String search, Pageable pageable);
+	
+	
 	
 }
