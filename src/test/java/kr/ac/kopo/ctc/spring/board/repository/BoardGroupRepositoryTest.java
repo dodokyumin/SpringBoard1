@@ -24,7 +24,7 @@ class BoardGroupRepositoryTest {
 	public void oneToMany_TwoWay() {
 		BoardGroup boardGroup1 = new BoardGroup();
 		BoardItem boardItem1 = new BoardItem();
-		List<BoardItem> boardItemList1 = new ArrayList<BoardItem>();;
+		List<BoardItem> boardItemList1 = new ArrayList<BoardItem>();
 		
 		boardItem1.setId(1);
 		boardItem1.setAuthor("홍길동");
